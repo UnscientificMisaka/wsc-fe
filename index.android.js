@@ -14,13 +14,15 @@ import { View } from 'react-native';
 import Banner from './app/views/banner';
 import Signin from './app/views/signin';
 import Country from './app/views/country';
+import Choose from './app/views/choose';
 
 const App = StackNavigator({
   Banner: {screen: Banner},
   Signin: {screen: Signin},
   Country: {screen: Country},
+  Choose: {screen: Choose},
 }, {
-  initialRouteName: 'Banner',
+  initialRouteName: 'Signin',
 });
 
 export default class wscfe extends Component {

@@ -8,6 +8,9 @@ export default class Signin extends Component {
 
     static navigationOptions = {
         title: '登录',
+        prefix: '',
+        mobile: '',
+        password: '',
     };
     
     state = {
@@ -16,13 +19,34 @@ export default class Signin extends Component {
         prefix: '+86',
         country: false
     }
+
+    componentDidMount () {
+        const navigate = this.props.navigation.state;
+        if (navigate.params) {
+            this.setState({
+                prefix: navigate.params.prefix
+            })
+        }
+    }
     
-    mobileChange = (e) => {
-        console.log(e)
+    mobileChange = (mobile) => {
+        this.setState({
+            mobile: mobile.trim()
+        })
+    }
+
+    passwordChange = (password) => {
+        this.setState({
+            password: password.trim()
+        })
     }
 
     showCountry = () => {
         this.props.navigation.navigate('Country');
+    }
+
+    signin = () => {
+        this.props.navigation.navigate('Choose');
     }
 
     render () {
@@ -38,15 +62,16 @@ export default class Signin extends Component {
                 <Input 
                     label="账号"
                     placeholder="请输入手机号"
+                    onChangeText={this.mobileChange}
                 />
                 <Input 
                     label="国家"
                     placeholder="请输入密码"
                     type="password"
-                    onChange={this.mobileChange}
+                    onChangeText={this.passwordChange}
                 />
                 <View style={styles.btn}>
-                    <Button>登录</Button>
+                    <Button onPress={this.signin}>登录</Button>
                 </View>
                 <View style={styles.forget}>
                     <Button href="/forget">忘记密码？</Button>

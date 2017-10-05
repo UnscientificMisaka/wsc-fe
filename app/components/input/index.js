@@ -34,7 +34,7 @@ export default class Input extends Component {
     }
 
     render () {
-        const { placeholder,label, onChange, type, editable } = this.props;
+        const { placeholder,label, onChangeText, type, editable } = this.props;
         const { secureTextEntry  } = this.state;
         
         return (
@@ -48,7 +48,7 @@ export default class Input extends Component {
                     style={styles.input}
                     underlineColorAndroid="transparent"
                     placeholder={placeholder}
-                    onChange={onChange}
+                    onChangeText={onChangeText}
                     secureTextEntry={secureTextEntry}
                     editable={editable}
                 />
