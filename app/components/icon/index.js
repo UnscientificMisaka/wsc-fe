@@ -9,16 +9,23 @@ export default class Icon extends Component {
         type: PropTypes.string,
         color: PropTypes.string,
         fontSize: PropTypes.number,
-        onPress: PropTypes.func
+        onPress: PropTypes.func,
+        marginLeft: PropTypes.number,
+        marginRight: PropTypes.number,
     }
 
     render () {
-        const { fontSize=25, color, type, onPress } = this.props;
+        const { fontSize=25, color, type, onPress, marginLeft, marginRight } = this.props;
         return (
             <TouchableNativeFeedback
                 onPress={onPress}
             >
-                <View>
+                <View
+                    style={{
+                        marginLeft,
+                        marginRight
+                    }}
+                >
                     <Text style={{
                         fontFamily: 'iconfont',
                         fontSize,

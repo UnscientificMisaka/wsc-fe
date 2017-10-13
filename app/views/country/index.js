@@ -26,9 +26,7 @@ export default class Country extends Component {
         this.setState({
             prefix: data.item
         }, () => {
-            return setTimeout(() => {
-                this.props.navigation.navigate('Signin', {prefix: data.item})
-            }, 1000)
+            this.props.navigation.navigate('Signin', {prefix: data.item});
         });
     }
 

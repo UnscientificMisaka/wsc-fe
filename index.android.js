@@ -15,14 +15,22 @@ import Banner from './app/views/banner';
 import Signin from './app/views/signin';
 import Country from './app/views/country';
 import Choose from './app/views/choose';
+import Setup from './app/views/setup';
+import Signup from './app/views/signup';
+import Shop from './app/views/shop';
+import Create from './app/views/create';
 
 const App = StackNavigator({
   Banner: {screen: Banner},
   Signin: {screen: Signin},
   Country: {screen: Country},
   Choose: {screen: Choose},
+  Setup: {screen: Setup},
+  Signup: {screen: Signup},
+  Shop: {screen: Shop},
+  Create: {screen: Create}
 }, {
-  initialRouteName: 'Signin',
+  initialRouteName: 'Choose',
 });
 
 export default class wscfe extends Component {

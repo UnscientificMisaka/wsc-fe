@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TextInput, TouchableNativeFeedback } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableNativeFeedback, Alert } from 'react-native';
 import { Button, Input, Icon, Country } from '../../components';
 import px from '../../common/px2dp';
 
 export default class Signin extends Component {
 
     static navigationOptions = {
-        title: '登录',
+        title: '注册',
+        prefix: '',
+        mobile: '',
     };
     
     state = {
         mobile: '',
-        password: '',
         prefix: '+86',
         country: false
     }
@@ -42,8 +43,11 @@ export default class Signin extends Component {
         this.props.navigation.navigate('Country');
     }
 
-    signin = () => {
-        this.props.navigation.navigate('Choose');
+    next = () => {
+        if (!this.state.mobile) {
+            return Alert.alert('', '注册账号不能为空',[{ text: '知道了' }])
+        }
+        // this.props.navigation.navigate('Choose');
     }
 
     render () {
@@ -57,21 +61,15 @@ export default class Signin extends Component {
                     </View>
                 </TouchableNativeFeedback>
                 <Input 
-                    label="账号"
+                    label="手机号"
                     placeholder="请输入手机号"
                     onChangeText={this.mobileChange}
                 />
-                <Input 
-                    label="密码"
-                    placeholder="请输入密码"
-                    type="password"
-                    onChangeText={this.passwordChange}
-                />
-                <View style={styles.btn}>
-                    <Button onPress={this.signin}>登录</Button>
+                <View style={styles.tip}>
+                    <Text>手机号即为登录账号，我们将发送验证短信到该号码</Text>
                 </View>
-                <View style={styles.forget}>
-                    <Button href="/forget">忘记密码？</Button>
+                <View style={styles.btn}>
+                    <Button onPress={this.next}>下一步</Button>
                 </View>
             </View>
         )
@@ -83,12 +81,15 @@ const styles = StyleSheet.create({
         marginTop: px(30)
     },
     btn: {
-        marginTop: px(20),
+        marginTop: px(10),
         height: px(50)
     },
-    forget: {
+    tip: {
         marginTop: px(10),
-        marginLeft: px(10)
+        marginLeft: px(10),
+    },
+    tipText: {
+        color: '#999'
     },
     countryInput: {
         backgroundColor: '#fff',
