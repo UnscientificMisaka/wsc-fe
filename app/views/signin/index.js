@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TextInput, TouchableNativeFeedback } from 'react-native';
-import { Button, Input, Icon, Country } from '../../components';
+import { Button, Input, Icon } from '../../components';
 import px from '../../common/px2dp';
 
 export default class Signin extends Component {

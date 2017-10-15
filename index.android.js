@@ -19,6 +19,7 @@ import Setup from './app/views/setup';
 import Signup from './app/views/signup';
 import Shop from './app/views/shop';
 import Create from './app/views/create';
+import Client from './app/views/client';
 
 const App = StackNavigator({
   Banner: {screen: Banner},
@@ -28,9 +29,10 @@ const App = StackNavigator({
   Setup: {screen: Setup},
   Signup: {screen: Signup},
   Shop: {screen: Shop},
-  Create: {screen: Create}
+  Create: {screen: Create},
+  Client: {screen: Client},
 }, {
-  initialRouteName: 'Choose',
+  initialRouteName: 'Client',
 });
 
 export default class wscfe extends Component {

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, Image, TouchableNativeFeedback } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableNativeFeedback, Dimensions } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Button, Icon, Popup } from '../../components';
+import Page from '../../components/page';
 import px from '../../common/px2dp';
 
+const { width, height } = Dimensions.get('window');
 class Dashboard extends Component {
     render () {
         return (
@@ -71,6 +73,60 @@ class Notify extends Component {
     }
 }
 
+class Panel extends Component {
+    content = [{
+        img: '',
+        text: '店铺管理',
+        link: 'shoplist'
+    },{
+        img: '',
+        text: '商品管理',
+        link: 'shoplist'
+    },,{
+        img: '',
+        text: '订单管理',
+        link: 'shoplist'
+    },,{
+        img: '',
+        text: '微商城收款',
+        link: 'shoplist'
+    },,{
+        img: '',
+        text: '扫码核销',
+        link: 'shoplist'
+    },,{
+        img: '',
+        text: '资产',
+        link: 'shoplist'
+    },,{
+        img: '',
+        text: '数据统计',
+        link: 'shoplist'
+    },,{
+        img: '',
+        text: '经营周报',
+        link: 'shoplist'
+    }]
+
+    render () {
+        return (
+            <View style={styles.panel}>
+                {this.content.map((item, index) => {
+                    return (
+                        <TouchableNativeFeedback
+                            key={index}
+                        >
+                            <View style={styles.card}>
+                                <Icon type="shop_light" fontSize={40}/>
+                                <Text>{item.text}</Text>
+                            </View>
+                        </TouchableNativeFeedback>
+                    )
+                })}
+            </View>
+        )
+    }
+}
 export default class Shop extends Component {
 
     static navigationOptions = ({ navigation, screenProps}) => ({
@@ -96,10 +152,11 @@ export default class Shop extends Component {
 
     render () {
         return (
-            <View>
+            <Page navigation={this.props.navigation}>
                 <Dashboard />
                 <Notify />
-            </View>
+                <Panel />
+            </Page>
         )       
     }
 }
@@ -107,6 +164,17 @@ export default class Shop extends Component {
 const styles = StyleSheet.create({
     dashborad: {
         height: px(180),
+    },
+    panel: {
+        backgroundColor: '#fff',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent:'flex-start',
+    },
+    card: {
+        alignItems: 'center',
+        width: width / 3,
+        height: px(95),
     },
     title: {
         marginTop: px(20),
@@ -146,7 +214,7 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     notify: {
-        marginTop: px(20),
+        marginTop: px(15),
         height: px(50),
         flexDirection:'row',
         backgroundColor: '#fff',
@@ -154,8 +222,10 @@ const styles = StyleSheet.create({
     block: {
         flex: 1,
         justifyContent: 'center',
-        borderRightColor: '#999',
+        borderRightColor: '#eee',
         borderRightWidth: 1,
+        borderBottomColor: '#eee',
+        borderBottomWidth: 1,
         flexDirection:'row',
         alignItems: 'center',
     },
